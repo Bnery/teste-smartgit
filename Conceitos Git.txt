@@ -1,0 +1,11 @@
+== Conceitos Git
+
+Arvore de Trabalho do Git - é o diretório onde você pode editar arquivos e faz parte de um repositório.
+
+== Ciclo de vida típico do projeto
+
+Como em todos os sistemas de controle de versão, normalmente existe um repositório central contendo os arquivos do projeto. Para criar um repositório local, você precisa cloar o repositório central remoto. Em seguida, o repositório local é conectado ao repositório remoto, que do ponto de vista do repositório local, é referido como origem.
+Tendo criado o repositório local contendo todos os arquivos de projeto de origem, você pode fazer alterações nos arquivos na arvore de trabalho e confirmar essas alterações. Eles serão armazenados apenas em seu repositório local, assim você não precisa nem acessar um repositório remoto ao fazer o commit. Depois de ter feito alterações, você poderá enviar essas atualizações para o repositório remoto, para que outros usuários possam clocar o seu repositório com as atualizações.
+
+Referência: http://www.syntevo.com/doc/display/SG/Git+Concepts
+
