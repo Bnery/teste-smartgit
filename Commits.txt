@@ -1,0 +1,90 @@
+== Commits ==
+
+Um commit é um conjunto de alterações que é armazenado no repositório juntamente com uma mensagem de comentário. 
+
+== Commit Graph ==
+
+Como todo repositório começa com um commit inicial, e casa commit subsequente é baseado diretamente em um ou mais commits pais, um repositório forma um commit um 'commitgrade' (ou tecnicamente falando, um grafo acídico direcionado de nós de commit), com cada commit sendo descendente direto ou indireto do commit inicial. Portanto, uma confirmação não é apenas um conjunto de alterações, mas, devido à sua localização fixa no gráfico de confirmação, também representa um estado de repositório exclusivo.
+
+Os commits normais têm exatamente uma commits pai, o commit inicial não tem commits pai e os chamados commits-merge possuem dois ou mais commits pai.
+
+	0 --- a merge commit
+	| \
+	|  0 --- commit normal
+	|  |
+	0  | --- outro commit normal
+	| /
+	0 --- outro commit normal que foi ramificado
+	|
+	0 --- commit inicial
+
+Cada commit é identificado uma chave unica SHA-ID e o Git permite verificarcada commit usando o seu SHA. 
+No entanto, com o SmartGit, você pode selecionar visualmente os commits a serem verificados, em vez de inserir os SHA's, que são difíceis de manusear.
+O Checkout definirá o HEAD e a arvore de trabalho para cada commit.
+Depois de ter modificado a arvore de trabalho, confirmar suas alterações produzirá uma nova confirmação cujo pai será a confirmação que foi registrada.
+Os commits recém criados são chamados de heads porque não há outros commits descendentes deles.
+
+== Juntando Tudo ==
+
+O exemplo a seguir mostra como commits, branches, pushing, fetching e marges são reproduzidos juntos.
+
+Vamos supor que temos commits A, B e C.
+Master e Origin/Master ambos apontam para C e HEAD apontam para master.
+Em outras palavras: A arvore de trabalho foi alterada para o branch master. Veja o seguir.
+
+	0 [ > master][origin/master] C
+	|
+	0 B
+	|
+	0 A
+
+Confirmar um conjunto de alterações resulta em um commit D, que é filho de C. master agora apontará para D, portanto, é um commit à frente do branch rastreado origin/master.
+
+	0 [ > master ] D
+	|
+	0 [ origin/master ] C
+	|
+	0 B
+	|
+	0 A
+
+Como rerultado de um Push, o Git envia o commit 'D' para o repositório de origem, movendo o master para o novo commit 'D'.
+Como um branch remoto sempre se refere a um branch no repositório remoto, origin/master nosso repositório também será configurado para o commit 'D'.
+
+	0 [ > master ][ origin/master ] D
+	|
+	0 C
+	|
+	0 B
+	|
+	0 A
+
+Agora vamos supor que alguem tenha modificado ainda mais o repositório remoto e criado um novo commit 'E', que é filho do commit 'D'.
+Isso significa que o master no repositório de origem agora aponta para 'E'.
+Ao buscar no repositório de origem, receberemos o commit 'E' e nossos repositórios origin/master serão movidos para 'E'.
+
+	0 [ origin/master ] E
+	|
+	0 [ > master ] D
+	|
+	0 C
+	| 
+	0 B
+	|
+	0 A
+
+Por fim, agora iremos usar o merge, para mesclar nosso local master com seu branch de rastreamente origin/master. Como não há novas confirmações locais, isso simplesmente master avançará rapidamente para o commit 'E'.
+
+	0 [ > master ][ origin/master ] E
+	|
+	0 D
+	|
+	0 C
+	|
+	0 B
+	|
+	0 A
+
+Referência:
+http://www.syntevo.com/doc/display/SG/Commits
+
