@@ -1,0 +1,30 @@
+== Branches ==
+
+Branches pode ser usadas para armazenar séries independentes de commits no repositório, por exemplo, para corrigir bugs de um software enquanto ao mesmo tempo desenvolvem-se novos recursos para a proxima versão deste mesmo software.
+
+O Git distingue dois tpos de Branches:
+	* Branches Locais
+	* Branche Remotas
+
+No repositório local, você pode criar quantas Branche desejar.
+
+As Branch remotas, por outro lado, são Branche locais do repositório de origem.
+
+Em outras palavras: Clonar um repositório remoto, clona todos os seus Branches locais que estão armazenadas em seu repositório local como Branches remotos. Você não pode trabalhar diretamente em Branches remotos, mas precisa criar Branches locais, que estão "Ligadas" aos Branches remotos. 
+
+o Branch local é chamado de branch de rastreamento e o branch controle da branch remota correspondente.
+
+O Branch principal local padrão criado pelo Git é denominada 'master', ao clonar um repositório remoto, o master rastreia a origem master do branch remoto.
+
+== Trabalhando com Branches ==
+
+Quando você envia alterações do seu branch local para o repositório de origem, essas alterações também serão divulgadas para a ramificação controlada 'remota'. Da mesma forma, quando você extrai alterações do repositório de origem, essas alterações também serão armazenadas na ramificação rastreada 'remota' no diretório local.
+Para obter as alterações do branch de controle em seu branch local, as alterações remotas precisam ser mescladas no branch de controle, isso pode ser feito diretamente com o comando Pull, ou chamando explicitamente o comando Merge, uma alternativa para o comando Merge é o comando Rebase.
+
+== Branchs são apenas ponteiros para Commits ==
+
+Cada branch é simplesmente um ponteiro para um commit, um ponteiro unico especial para cada repositório é o HEAD que aponta para o commit a que o estado da arvore de trabalho corresponde atualmente. O HEAD não pode apenas apontar para um commit, mas também para um branch local, que por sua vez aponta para um commit. A confirmação de alterações criará um novo commit no topo do branch local para o qual o HEAD esta apontando. Se o HEAD apontar para um branch local, o ponteiro do branch será movido para a nova confirmação, assim o HEAD também apontará indiretamente para o novo commit.
+Se o HEAD aponta para um commit, o HEAD é movido para um novo commit.
+
+Referência: http://www.syntevo.com/doc/display/SG/Branches
+
